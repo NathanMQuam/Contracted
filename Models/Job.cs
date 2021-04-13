@@ -12,5 +12,8 @@ namespace Models
       public int Pay { get; set; }
    }
 
-   // TODO: 
+   public class JobContractorViewModel : Job
+   {
+      public int AssignmentId { get; set; }
+   }
 }

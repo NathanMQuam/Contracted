@@ -1,3 +1,5 @@
+USE artiste;
+
 -- NOTE: Jobs
 -- CREATE TABLE jobs (
 --    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -20,3 +22,29 @@
 --    FOREIGN KEY (contractorId) REFERENCES contractors(id),
 --    FOREIGN KEY (jobId) REFERENCES jobs(id)
 -- );
+-- 
+-- SELECT
+--    j.id AS JobId,
+--    j.title,
+--    j.description,
+--    j.pay,
+--    c.id AS ContractorId,
+--    c.name,
+--    c.contact,
+--    c.info,
+--    assignments.id AS AssignmentId
+-- FROM
+--    assignments
+--    JOIN jobs j ON j.id = assignments.jobId
+--    JOIN contractors c ON c.id = assignments.contractorId
+-- WHERE
+--    assignments.id = 5;
+-- 
+-- SELECT
+--    c.*,
+--    assignments.id AS AssignmentId
+-- FROM
+--    assignments
+--    JOIN contractors c ON c.id = assignments.contractorId
+-- WHERE
+--    assignments.id = 5;

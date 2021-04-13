@@ -37,6 +37,7 @@ namespace Services
       internal Contractor Edit(Contractor updated)
       {
          var original = GetById(updated.Id);
+         updated.Id = original.Id;
          updated.Name = updated.Name != null ? updated.Name : original.Name;
          updated.Contact = updated.Contact != null ? updated.Contact : original.Contact;
          updated.Info = updated.Info != null ? updated.Info : original.Info;

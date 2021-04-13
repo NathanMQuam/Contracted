@@ -12,10 +12,13 @@ namespace Controllers
    public class ContractorsController : ControllerBase
    {
       private readonly ContractorsService _service;
+      private readonly JobsService _jserv;
 
       public ContractorsController(ContractorsService service, JobsService jserv)
       {
          _service = service;
+         _jserv = jserv;
+
       }
 
       [HttpGet]
@@ -79,6 +82,19 @@ namespace Controllers
          try
          {
             return Ok(_service.Delete(id));
+         }
+         catch (Exception e)
+         {
+            return BadRequest(e.Message);
+         }
+      }
+
+      [HttpGet("{id}/jobs")]  // NOTE '{}' signifies a var parameter
+      public ActionResult<IEnumerable<JobContractorViewModel>> GetJobsByContractorId(int id)
+      {
+         try
+         {
+            return Ok(_jserv.GetJobsByContractorId(id));
          }
          catch (Exception e)
          {

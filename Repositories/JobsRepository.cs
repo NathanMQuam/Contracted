@@ -18,44 +18,41 @@ namespace Repositories
 
       internal IEnumerable<Job> GetAll()
       {
-         string sql = @"
-      SELECT 
-      prod.*,
-      prof.*
-      FROM jobs prod
-      JOIN profiles prof ON prod.creatorId = prof.id";
+         //    string sql = @"
+         // SELECT 
+         // prod.*,
+         // prof.*
+         // FROM jobs prod
+         // JOIN profiles prof ON prod.creatorId = prof.id";
          // return _db.Query<Job, Profile, Job>(sql, (job, profile) =>
          // {
          //    // job.Creator = profile;
          //    return job;
          // }, splitOn: "id");
+         string sql = "SELECT * FROM jobs";
          return _db.Query<Job>(sql);
       }
 
       internal Job GetById(int id)
       {
          string sql = @" 
-      SELECT 
-      prod.*,
-      prof.*
-      FROM jobs prod
-      JOIN profiles prof ON prod.creatorId = prof.id
-      WHERE prod.id = @id";
+         SELECT * FROM jobs
+         WHERE id = @id";
          // return _db.Query<Job, Profile, Job>(sql, (job, profile) =>
          //    {
          //       job.Creator = profile;
          //       return job;
          //    }, new { id }, splitOn: "id").FirstOrDefault();
-         return _db.Query<Job>(sql).FirstOrDefault();
+         return _db.Query<Job>(sql, new { id }).FirstOrDefault();
       }
 
       internal Job Create(Job newJob)
       {
          string sql = @"
       INSERT INTO jobs 
-      (title, description, price, creatorId) 
+      (title, description, pay) 
       VALUES 
-      (@Title, @Description, @Price, @creatorId);
+      (@Title, @Description, @Pay);
       SELECT LAST_INSERT_ID();";
          int id = _db.ExecuteScalar<int>(sql, newJob);
          newJob.Id = id;
@@ -69,7 +66,7 @@ namespace Repositories
         SET
          title = @Title,
          description = @Description,
-         price = @Price
+         pay = @Pay
         WHERE id = @Id;";
          _db.Execute(sql, updated);
          return updated;
@@ -82,14 +79,15 @@ namespace Repositories
       }
 
       // TODO: 
-      // internal IEnumerable<WishListJobViewModel> GetJobsByListId(int id)
-      // {
-      //    string sql = @"SELECT 
-      // p.*,
-      // wlp.id AS WishListJobId
-      // FROM wishlistjobs wlp
-      // JOIN jobs p ON p.id = wlp.jobId
-      // WHERE wishlistId = @id;";
-      //    return _db.Query<WishListJobViewModel>(sql, new { id });
+      internal IEnumerable<JobContractorViewModel> GetJobsByContractorId(int id)
+      {
+         string sql = @"SELECT 
+      p.*,
+      wlp.id AS AssignmentId
+      FROM assignments wlp
+      JOIN jobs p ON p.id = wlp.jobId
+      WHERE contractorId = @id;";
+         return _db.Query<JobContractorViewModel>(sql, new { id });
+      }
    }
 }

@@ -50,9 +50,9 @@ namespace Services
       }
 
       // TODO: 
-      // internal IEnumerable<WishListProductViewModel> GetProductsByListId(int id)
-      // {
-      //    return _repo.GetProductsByListId(id);
-      // }
+      internal IEnumerable<JobContractorViewModel> GetJobsByContractorId(int id)
+      {
+         return _repo.GetJobsByContractorId(id);
+      }
    }
 }

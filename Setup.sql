@@ -1,0 +1,22 @@
+-- NOTE: Jobs
+-- CREATE TABLE jobs (
+--    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--    title VARCHAR(255) NOT NULL,
+--    description VARCHAR(255),
+--    pay INT
+-- );
+-- NOTE: Contractors
+-- CREATE TABLE contractors (
+--    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--    name VARCHAR(255) NOT NULL,
+--    contact VARCHAR(255) NOT NULL,
+--    info VARCHAR(255)
+-- );
+-- NOTE: Assignments
+-- CREATE TABLE assignments (
+--    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--    jobId INT NOT NULL,
+--    contractorId INT NOT NULL,
+--    FOREIGN KEY (contractorId) REFERENCES contractors(id),
+--    FOREIGN KEY (jobId) REFERENCES jobs(id)
+-- );
